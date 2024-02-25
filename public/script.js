@@ -31,6 +31,8 @@ function displayBooks(books) {
   });
 }
 
+displayBooks(books);
+
 function addToCart(title, price) {
   const cartItems = document.getElementById("cartItems");
   const cartTotal = document.getElementById("cartTotal");
