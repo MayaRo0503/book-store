@@ -9,18 +9,22 @@ header {
 }
 
 #bookList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
   padding: 10px;
 }
 
 .book {
   border: 1px solid #ddd;
   padding: 10px;
-  width: 200px;
   text-align: center;
+}
+
+.book img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .cart {
@@ -31,4 +35,8 @@ header {
 
 .cart h2 {
   margin-top: 0;
+}
+
+.cart button {
+  margin-top: 10px;
 }
