@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "If your collaborators want to work with the Git Flow workflow in the same repository, they should follow these steps:",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
