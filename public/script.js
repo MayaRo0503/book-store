@@ -51,7 +51,7 @@ function displayBooks(books) {
   });
 }
 
-// Initially display all books
+
 displayBooks(books);
 
 function addToCart(title, price) {
