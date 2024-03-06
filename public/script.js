@@ -22,14 +22,20 @@ const books = [
 ];
 
 function searchBooks() {
-  const searchInput = document
-    .getElementById("searchInput")
-    .value.toLowerCase();
-  const filteredBooks = books.filter((book) =>
-    book.title.toLowerCase().includes(searchInput)
-  );
-  displayBooks(filteredBooks);
+  const searchInput = document.getElementById("searchInput").value.toLowerCase();
+  const filteredBooks = books.filter((book) => book.title.toLowerCase().includes(searchInput));
+
+  if (filteredBooks.length === 0) {
+    // Display error message
+    alert("No books found matching your search.");
+    // Return to displaying all books
+    displayBooks(books);
+  } else {
+    // Display filtered books
+    displayBooks(filteredBooks);
+  }
 }
+
 
 function displayBooks(books) {
   const bookList = document.getElementById("bookList");
@@ -43,9 +49,8 @@ function displayBooks(books) {
       <h2>${book.title}</h2>
       <p>Author: ${book.author}</p>
       <p>Price: $${book.price.toFixed(2)}</p>
-      <button onclick="addToCart('${book.title}', ${
-      book.price
-    })">Add to Cart</button>
+      <button onclick="addToCart('${book.title}', ${book.price
+      })">Add to Cart</button>
     `;
     bookList.appendChild(bookElement);
   });
