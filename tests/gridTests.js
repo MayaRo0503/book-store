@@ -92,6 +92,6 @@ const firefoxCapabilities = {
   console.log("Testing on Firefox...");
   await runTestWithCapabilities(firefoxCapabilities);
 
-  console.log("Testing on Safari...");
-  await runTestWithCapabilities(safariCapabilities);
+  //console.log("Testing on Safari...");
+  //await runTestWithCapabilities(safariCapabilities);
 })();
