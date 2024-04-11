@@ -1,6 +1,8 @@
 const { Builder, By, until } = require("selenium-webdriver");
 const assert = require("assert");
+const fs = require('fs');
 
+// Your existing code
 const iterations = 1500; // Number of times to run the script
 
 (async function testBookstore() {
@@ -23,14 +25,6 @@ const iterations = 1500; // Number of times to run the script
             .findElement(By.css("#bookList .book h2"))
             .getText();
         assert.equal("Book 1", bookTitle.trim());
-
-        // /// Search for a book that doesn't exist
-        // const searchInput = 'Nonexistent Book';
-        // await driver.findElement(By.id('searchInput')).sendKeys(searchInput);
-        // await driver.findElement(By.tagName('button')).click();
-
-        // // Wait for the button element in the book list to become visible
-        // await driver.wait(until.elementIsVisible(driver.findElement(By.css('#bookList .book button'))), 20000);
 
         // Check if error message is displayed
         try {
@@ -84,6 +78,15 @@ const iterations = 1500; // Number of times to run the script
             .findElement(By.id("cartTotal"))
             .getText();
         assert.equal("0.00", cartTotalAfterClear.trim());
+
+        // Import your test files (Selenium IDE test files)
+        const testFiles = fs.readdirSync('./tests').filter(file => file.endsWith('.spec.js'));
+
+        // Run your Selenium IDE test files
+        for (const testFile of testFiles) {
+            const testScript = require(`./tests/${testFile}`);
+            testScript(); // Assuming your test files export a function to run the tests
+        }
     } catch (e) {
         console.log(e);
     } finally {
