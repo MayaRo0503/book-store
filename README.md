@@ -43,17 +43,59 @@ By following these steps, your collaborators can work with the Git Flow workflow
 
 ***
 
-*To perform Selenium Grid tests, the following actions must be performed:*<br>
-1) According to the location where the latest Selenium Grid is located, we will perform -<br>
-  cd C:\Users\ASUS\Downloads<br>
-2) java -jar selenium-server-4.19.1.jar standalone<br>
-In another CMD we will do:<br>
-1) According to the location where the latest Selenium Grid is located, we will perform -<br>
-  cd C:\Users\ASUS\Downloads<br>
-2) java -jar selenium-server-4.19.1.jar standalone<br>
-3) java -jar selenium-server-4.19.1.jar node<br>
-We will open the browser to the address: http://localhost:4444/<br>
-In the terminal we will execute the following commands when we are inside the folder of our project:
-1) cd tests
-2) cd grid
-3) node runGridTests.js
+## Performing Selenium Grid Tests
+
+To perform Selenium Grid tests, follow these steps:
+
+### Setting Up Selenium Grid (Standalone Server):
+
+1. Navigate to the location where the latest Selenium Grid is located:
+
+    ```bash
+    cd C:\Users\ASUS\Downloads
+    ```
+
+2. Start the Selenium Grid standalone server:
+
+    ```bash
+    java -jar selenium-server-4.19.1.jar standalone
+    ```
+
+### Configuring Grid Nodes:
+
+1. Open another command prompt window and navigate to the location where the latest Selenium Grid is located:
+
+    ```bash
+    cd C:\Users\ASUS\Downloads
+    ```
+
+2. Start the Selenium Grid node:
+
+    ```bash
+    java -jar selenium-server-4.19.1.jar node
+    ```
+
+3. Open a web browser and navigate to the address: [http://localhost:4444/](http://localhost:4444/).
+
+### Running Grid Tests:
+
+1. Navigate to the folder of your project:
+
+    ```bash
+    cd tests
+    ```
+
+2. Navigate to the `grid` subfolder:
+
+    ```bash
+    cd grid
+    ```
+
+3. Execute the command to run the grid tests:
+
+    ```bash
+    node runGridTests.js
+    ```
+
+These steps should help you set up and run Selenium Grid tests successfully. Make sure to replace `C:\Users\ASUS\Downloads` with the actual location of your Selenium Grid files.
+
