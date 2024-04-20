@@ -40,3 +40,20 @@ If your collaborators want to work with the Git Flow workflow in the same reposi
    After finishing the feature, release, or hotfix, collaborators should push their changes to the remote repository using git push. If they created a new tag, they should also push the tags using git push origin --tags.
 
 By following these steps, your collaborators can work with the Git Flow workflow in the same repository, ensuring a consistent and organized development process.
+
+***
+
+*To perform Selenium Grid tests, the following actions must be performed:*
+1) According to the location where the latest Selenium Grid is located, we will perform -
+  cd C:\Users\ASUS\Downloads
+2) java -jar selenium-server-4.19.1.jar standalone
+In another CMD we will do:
+1) According to the location where the latest Selenium Grid is located, we will perform -
+  cd C:\Users\ASUS\Downloads
+2) java -jar selenium-server-4.19.1.jar standalone
+3) java -jar selenium-server-4.19.1.jar node
+We will open the browser to the address: http://localhost:4444/
+In the terminal we will execute the following commands when we are inside the folder of our project:
+1) cd tests
+2) cd grid
+3) node runGridTests.js
