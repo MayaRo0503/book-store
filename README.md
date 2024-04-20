@@ -53,7 +53,7 @@ In another CMD we will do:<br>
 2) java -jar selenium-server-4.19.1.jar standalone<br>
 3) java -jar selenium-server-4.19.1.jar node<br>
 We will open the browser to the address: http://localhost:4444/<br>
-In the terminal we will execute the following commands when we are inside the folder of our project:<br>
+In the terminal we will execute the following commands when we are inside the folder of our project:
 1) cd tests
 2) cd grid
 3) node runGridTests.js
