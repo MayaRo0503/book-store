@@ -97,5 +97,15 @@ To perform Selenium Grid tests, follow these steps:
     node runGridTests.js
     ```
 
+### Updating Selenium Grid:
+
+If it is necessary to update a version of Selenium Grid, follow these steps:
+
+1. Download the latest version of Selenium Grid from the official website.
+
+2. Replace the existing Selenium Grid files in the project folder with the new version.
+
+3. Repeat the steps for setting up Selenium Grid and configuring grid nodes as mentioned above.
+
 These steps should help you set up and run Selenium Grid tests successfully. Make sure to replace `C:\Users\ASUS\Downloads` with the actual location of your Selenium Grid files.
 
