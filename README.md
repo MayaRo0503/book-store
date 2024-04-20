@@ -43,17 +43,17 @@ By following these steps, your collaborators can work with the Git Flow workflow
 
 ***
 
-*To perform Selenium Grid tests, the following actions must be performed:*
-1) According to the location where the latest Selenium Grid is located, we will perform -
-  cd C:\Users\ASUS\Downloads
-2) java -jar selenium-server-4.19.1.jar standalone
-In another CMD we will do:
-1) According to the location where the latest Selenium Grid is located, we will perform -
-  cd C:\Users\ASUS\Downloads
-2) java -jar selenium-server-4.19.1.jar standalone
-3) java -jar selenium-server-4.19.1.jar node
-We will open the browser to the address: http://localhost:4444/
-In the terminal we will execute the following commands when we are inside the folder of our project:
-1) cd tests
-2) cd grid
-3) node runGridTests.js
+*To perform Selenium Grid tests, the following actions must be performed:*<br>
+1) According to the location where the latest Selenium Grid is located, we will perform -<br>
+  cd C:\Users\ASUS\Downloads<br>
+2) java -jar selenium-server-4.19.1.jar standalone<br>
+In another CMD we will do:<br>
+1) According to the location where the latest Selenium Grid is located, we will perform -<br>
+  cd C:\Users\ASUS\Downloads<br>
+2) java -jar selenium-server-4.19.1.jar standalone<br>
+3) java -jar selenium-server-4.19.1.jar node<br>
+We will open the browser to the address: http://localhost:4444/<br>
+In the terminal we will execute the following commands when we are inside the folder of our project:<br>
+1) cd tests<br>
+2) cd grid<br>
+3) node runGridTests.js<br>
