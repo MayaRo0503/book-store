@@ -107,5 +107,6 @@ If it is necessary to update a version of Selenium Grid, follow these steps:
 
 3. Repeat the steps for setting up Selenium Grid and configuring grid nodes as mentioned above.
 
-These steps should help you set up and run Selenium Grid tests successfully. Make sure to replace `C:\Users\ASUS\Downloads` with the actual location of your Selenium Grid files.
+These steps should help you set up and run Selenium Grid tests successfully. <br>
+Make sure to replace `C:\Users\ASUS\Downloads` with the actual location of your Selenium Grid files.
 
