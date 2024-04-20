@@ -68,9 +68,8 @@ git push origin --tags
 
 By following these steps, your collaborators can work with the Git Flow workflow in the same repository, ensuring a consistent and organized development process.
 
----
 
-Feel free to copy and paste this formatted text into your README.md file!
+
 ***
 
 ## Performing Selenium Grid Tests
