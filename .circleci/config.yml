@@ -3,13 +3,23 @@ version: 2.1
 executors:
   node:
     docker:
-      - image: circleci/node:14.21.0 # Update to the required Node.js version
+      - image: circleci/node:14 # Use a general Node.js 14 image
 
 jobs:
   build:
     executor: node
     steps:
       - checkout
+      - run:
+          name: Install nvm
+          command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+      - run:
+          name: Install Node.js 14.21.0
+          command: |
+            source ~/.nvm/nvm.sh
+            nvm install 14.21.0
+            nvm use 14.21.0
+            nvm alias default 14.21.0
       - run:
           name: Install Yarn
           command: npm install -g yarn
@@ -28,8 +38,19 @@ jobs:
 
   deploy:
     executor: node
+    needs: build
     steps:
       - checkout
+      - run:
+          name: Install nvm
+          command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+      - run:
+          name: Install Node.js 14.21.0
+          command: |
+            source ~/.nvm/nvm.sh
+            nvm install 14.21.0
+            nvm use 14.21.0
+            nvm alias default 14.21.0
       - run:
           name: Install Yarn
           command: npm install -g yarn
