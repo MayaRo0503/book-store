@@ -11,16 +11,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install nvm
-          command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-      - run:
-          name: Install Node.js 14.21.0
-          command: |
-            source ~/.nvm/nvm.sh
-            nvm install 14.21.0
-            nvm use 14.21.0
-            nvm alias default 14.21.0
-      - run:
           name: Install Yarn
           command: npm install -g yarn
 
@@ -38,19 +28,8 @@ jobs:
 
   deploy:
     executor: node
-    needs: build
     steps:
       - checkout
-      - run:
-          name: Install nvm
-          command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-      - run:
-          name: Install Node.js 14.21.0
-          command: |
-            source ~/.nvm/nvm.sh
-            nvm install 14.21.0
-            nvm use 14.21.0
-            nvm alias default 14.21.0
       - run:
           name: Install Yarn
           command: npm install -g yarn
