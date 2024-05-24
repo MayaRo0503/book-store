@@ -11,36 +11,28 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Yarn
-          command: npm install -g yarn
-
-      - run:
           name: Install Dependencies
-          command: yarn install
+          command: npm install
 
       - run:
           name: Build Project
-          command: yarn build --if-present
+          command: ./node_modules/.bin/yarn build --if-present
 
       - run:
           name: Run Tests
-          command: yarn test --if-present
+          command: ./node_modules/.bin/yarn test --if-present
 
   deploy:
     executor: node
     steps:
       - checkout
       - run:
-          name: Install Yarn
-          command: npm install -g yarn
-
-      - run:
           name: Install Dependencies
-          command: yarn install
+          command: npm install
 
       - run:
           name: Build Project
-          command: yarn build --if-present
+          command: ./node_modules/.bin/yarn build --if-present
 
       - run:
           name: Deploy to Render
