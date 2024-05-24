@@ -15,8 +15,23 @@ jobs:
           command: npm install
 
       - run:
+          name: Install ChromeDriver
+          command: |
+            sudo apt-get update
+            sudo apt-get install -yqq unzip
+            wget -N https://chromedriver.storage.googleapis.com/$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip -P ~/
+            unzip ~/chromedriver_linux64.zip -d ~/
+            sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
+            sudo chown root:root /usr/local/bin/chromedriver
+            sudo chmod 0755 /usr/local/bin/chromedriver
+            chromedriver --version
+
+      - run:
           name: Run Selenium Tests
-          command: npm test
+          command: npm tests
+          environment:
+            CHROME_BIN: "/usr/bin/google-chrome"
+            CHROMEDRIVER_BIN: "/usr/local/bin/chromedriver"
 
   deploy:
     executor: node
