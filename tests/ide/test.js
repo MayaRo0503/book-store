@@ -2,7 +2,6 @@ const { Builder, By, until } = require("selenium-webdriver");
 const assert = require("assert");
 const fs = require("fs");
 
-// Your existing code
 const iterations = 1500; // Number of times to run the script
 
 (async function testBookstore() {
@@ -10,7 +9,17 @@ const iterations = 1500; // Number of times to run the script
   const startTime = performance.now();
 
   try {
-    driver = await new Builder().forBrowser("chrome").build();
+    // Set up the ChromeDriver path
+    const chromeOptions = {
+      binary: process.env.CHROME_BIN,
+      args: ["--headless", "--no-sandbox", "--disable-dev-shm-usage"],
+    };
+
+    driver = await new Builder()
+      .forBrowser("chrome")
+      .setChromeOptions(chromeOptions)
+      .build();
+
     await driver.get("https://book-store-5l9x.onrender.com");
 
     // Title check
@@ -48,7 +57,7 @@ const iterations = 1500; // Number of times to run the script
       const Y = performance.now();
 
       console.log("iteration=" + i);
-      console.log(`Time Bitween clicks: ${Y - X} milsec`);
+      console.log(`Time Between clicks: ${Y - X} milsec`);
     }
 
     // Check total price in the cart after adding a book
@@ -94,6 +103,8 @@ const iterations = 1500; // Number of times to run the script
   } finally {
     const endTime = performance.now();
     console.log(`Time loading page: ${(endTime - startTime) / 1000} sec`);
-    await driver.quit();
+    if (driver) {
+      await driver.quit();
+    }
   }
 })();
