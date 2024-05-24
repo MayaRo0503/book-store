@@ -14,7 +14,7 @@ describe("Delete multiple books from cart", function () {
     await driver.quit();
   });
   it("Delete multiple books from cart", async function () {
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     await driver.manage().window().setRect({ width: 784, height: 824 });
     await driver.findElement(By.id("bookList")).click();
     await driver.findElement(By.css(".book:nth-child(11) > button")).click();

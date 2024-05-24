@@ -11,7 +11,7 @@ const iterations = 1500; // Number of times to run the script
 
   try {
     driver = await new Builder().forBrowser("chrome").build();
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
 
     // Title check
     let title = await driver.getTitle();

@@ -12,7 +12,7 @@ async function runClearCartWithCapabilities(capabilities) {
 
   try {
     // Navigate to the website
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     await driver.manage().window().setRect({ width: 784, height: 824 });
 
     // Add books to the cart before attempting to clear it
@@ -82,7 +82,7 @@ async function runAddBookToCartWithCapabilities(capabilities) {
     .build();
 
   try {
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     await driver
       .findElement(By.css("#bookList .book:nth-child(1) button"))
       .click();
@@ -103,7 +103,7 @@ async function runSearchBookWithCapabilities(capabilities) {
     .build();
 
   try {
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     await driver.findElement(By.id("searchInput")).sendKeys("book 10");
     await driver.findElement(By.css("button:nth-child(3)")).click();
     // Implement checking the result, ensuring the right book is returned
@@ -119,7 +119,7 @@ async function runSearchInvalidBookWithCapabilities(capabilities) {
     .build();
 
   try {
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     await driver.manage().window().setRect({ width: 784, height: 824 });
     await driver.findElement(By.id("searchInput")).sendKeys("nonexistent book");
 
@@ -150,7 +150,7 @@ async function runWindowFullSizeWithCapabilities(capabilities) {
     .build();
 
   try {
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     await driver.manage().window().maximize(); // Maximizes the window
   } finally {
     await driver.quit();
@@ -165,7 +165,7 @@ async function runWindowHalfSizeWithCapabilities(capabilities) {
     .build();
 
   try {
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     const dimensions = await driver.executeScript(
       "return { width: window.screen.availWidth, height: window.screen.availHeight }"
     );

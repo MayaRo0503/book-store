@@ -14,7 +14,7 @@ describe("Window half size", function () {
     await driver.quit();
   });
   it("Window half size", async function () {
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     await driver.manage().window().setRect({ width: 784, height: 824 });
   });
 });
