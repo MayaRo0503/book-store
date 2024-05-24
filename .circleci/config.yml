@@ -29,3 +29,51 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - say-hello
+
+
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:14
+
+jobs:
+  build:
+    executor: node
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install
+      - run:
+          name: Run Tests
+          command: yarn test
+
+  deploy:
+    executor: node
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install
+      - run:
+          name: Build Application
+          command: yarn build
+      - run:
+          name: Deploy to Render
+          command: |
+            curl -X POST \
+            -H "Accept: application/json" \
+            -H "Authorization: Bearer ${RENDER_API_KEY}" \
+            -H "Content-Type: application/json" \
+            --data '{"serviceId": "${RENDER_SERVICE_ID}", "branch": "main"}' \
+            https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
