@@ -1,61 +1,31 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-executors:
-  node:
-    docker:
-      - image: circleci/node:14-browsers # Use a Node.js image with browser support
-
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  build:
-    executor: node
+  say-hello:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      # Specify the version you desire here
+      # See: https://circleci.com/developer/images/image/cimg/base
+      - image: cimg/base:current
+
+    # Add steps to the job
+    # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
     steps:
+      # Checkout the code as the first step.
       - checkout
       - run:
-          name: Install Dependencies
-          command: npm install
+          name: "Say hello"
+          command: "echo Hello, World!"
 
-      - run:
-          name: Install ChromeDriver
-          command: |
-            sudo apt-get update
-            sudo apt-get install -yqq unzip
-            wget -N https://chromedriver.storage.googleapis.com/$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip -P ~/
-            unzip ~/chromedriver_linux64.zip -d ~/
-            sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
-            sudo chown root:root /usr/local/bin/chromedriver
-            sudo chmod 0755 /usr/local/bin/chromedriver
-            chromedriver --version
-
-      - run:
-          name: Run Selenium Tests
-          command: npm tests
-          environment:
-            CHROME_BIN: "/usr/bin/google-chrome"
-            CHROMEDRIVER_BIN: "/usr/local/bin/chromedriver"
-
-  deploy:
-    executor: node
-    steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: npm install
-
-      - run:
-          name: Deploy to Render
-          command: |
-            curl -X POST \
-            -H "Accept: application/json" \
-            -H "Authorization: Bearer ${RENDER_API_KEY}" \
-            -H "Content-Type: application/json" \
-            --data '{"serviceId": "${RENDER_SERVICE_ID}", "branch": "main"}' \
-            https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys
-
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  version: 2
-  build_and_deploy:
+  say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build
-      - deploy:
-          requires:
-            - build
+      - say-hello
