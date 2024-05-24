@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/eb7e41b0-a746-4d57-9a95-8caf54a66aac/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/bookStore11",
+  "appService.deploySubpath": "."
+}
