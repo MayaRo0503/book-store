@@ -3,7 +3,7 @@ version: 2.1
 executors:
   node:
     docker:
-      - image: circleci/node:14 # Use a general Node.js 14 image
+      - image: circleci/node:14-browsers # Use a Node.js image with browser support
 
 jobs:
   build:
@@ -15,8 +15,8 @@ jobs:
           command: npm install
 
       - run:
-          name: Run Tests
-          command: npm tests
+          name: Run Selenium Tests
+          command: npm test
 
   deploy:
     executor: node

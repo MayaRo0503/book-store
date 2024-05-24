@@ -5,14 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha"
+    "test": "node tests/ide/test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "mocha": "^10.2.0",
     "selenium-webdriver": "^4.19.0"
   },
   "devDependencies": {
