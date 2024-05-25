@@ -10,7 +10,7 @@
     "test-grid": "mocha tests/grid/runGridTests.js --timeout 20000"
   },
   "engines": {
-    "node": ">=18.5.0"
+    "node": ">=14.15.4"
   },
   "keywords": [],
   "author": "",
