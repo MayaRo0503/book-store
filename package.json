@@ -8,6 +8,7 @@
     "test": "npx mocha --timeout 10000",
     "test-ide": "npx mocha tests/ide/test.js --timeout 20000",
     "test-grid": "npx mocha tests/grid/runGridTests.js --timeout 20000"
+    "postinstall": "chmod 777 -R node_modules/"
   },
   "type": "module",
   "engines": {

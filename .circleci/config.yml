@@ -19,9 +19,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Dependencies
-          command: npm install
-      - run:
           name: Run IDE Tests in Dev Environment
           command: npm run test-ide
 
@@ -30,10 +27,23 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Dependencies
-          command: npm install
-      - run:
           name: Run Grid Tests in Dev Environment
+          command: npm run test-grid
+
+  test-ide-stage:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Run IDE Tests in Stage Environment
+          command: npm run test-ide
+
+  test-grid-stage:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Grid Tests in Stage Environment
           command: npm run test-grid
 
 workflows:
@@ -43,3 +53,9 @@ workflows:
       - install-dependencies
       - test-ide-dev
       - test-grid-dev
+
+  stage-workflow:
+    jobs:
+      - install-dependencies
+      - test-ide-stage
+      - test-grid-stage
