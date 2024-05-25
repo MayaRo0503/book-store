@@ -4,7 +4,10 @@
   "description": "If your collaborators want to work with the Git Flow workflow in the same repository, they should follow these steps:",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "mocha --timeout 10000",
+    "test-ide": "mocha tests/ide/test.js --timeout 20000",
+    "test-grid": "mocha tests/grid/runGridTests.js --timeout 20000"
   },
   "keywords": [],
   "author": "",
