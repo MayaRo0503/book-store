@@ -19,13 +19,13 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y google-chrome-stable
 
-start-selenium:
-  executor: node-executor
-  steps:
-    - checkout
-    - run:
-        name: Start Selenium Server
-        command: |
+  start-selenium:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Start Selenium Server
+          command: |
           wget https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
           java -jar selenium-server-standalone-3.141.59.jar > /dev/null 2>&1 &
 
