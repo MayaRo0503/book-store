@@ -13,6 +13,21 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install
+       - run:
+          name: Install Chrome
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y google-chrome-stable
+
+start-selenium:
+  executor: node-executor
+  steps:
+    - checkout
+    - run:
+        name: Start Selenium Server
+        command: |
+          wget https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
+          java -jar selenium-server-standalone-3.141.59.jar > /dev/null 2>&1 &
 
   test-ide-dev:
     executor: node-executor
@@ -51,11 +66,13 @@ workflows:
   dev-workflow:
     jobs:
       - install-dependencies
+      - start-selenium
       - test-ide-dev
       - test-grid-dev
 
   stage-workflow:
     jobs:
       - install-dependencies
+      - start-selenium
       - test-ide-stage
       - test-grid-stage
