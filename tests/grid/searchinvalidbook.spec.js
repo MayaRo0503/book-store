@@ -16,7 +16,7 @@ async function runSearchInvalidBookWithCapabilities(capabilities) {
     });
 
     it("Search invalid book", async function () {
-      await driver.get("http://bookstore11.azurewebsites.net/");
+      await driver.get("https://book-store-5l9x.onrender.com");
       try {
         // To maximize the window directly
         await driver.manage().window().maximize();

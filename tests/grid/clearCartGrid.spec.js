@@ -8,7 +8,7 @@ async function runClearCartWithCapabilities(capabilities) {
     .build();
 
   try {
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     await driver.manage().window().setRect({ width: 784, height: 824 });
     // Simulate adding books to cart before clearing
     await driver.findElement(By.css(".book:nth-child(10)")).click();

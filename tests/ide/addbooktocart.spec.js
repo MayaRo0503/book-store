@@ -33,7 +33,7 @@ async function runTestWithGrid(browserName) {
     });
 
     it("Add book to cart", async function () {
-      await driver.get("http://bookstore11.azurewebsites.net/");
+      await driver.get("https://book-store-5l9x.onrender.com");
       await driver.manage().window().setRect({ width: 784, height: 824 });
 
       // Wait for the button to be clickable and then click it

@@ -16,7 +16,7 @@ async function runWindowFullSizeWithCapabilities(capabilities) {
     });
 
     it("Window full size", async function () {
-      await driver.get("http://bookstore11.azurewebsites.net/");
+      await driver.get("https://book-store-5l9x.onrender.com");
       await driver.manage().window().setRect({ width: 1552, height: 840 });
     });
   });

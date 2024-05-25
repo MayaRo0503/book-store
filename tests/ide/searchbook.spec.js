@@ -14,7 +14,7 @@ describe("Search book", function () {
     await driver.quit();
   });
   it("Search book", async function () {
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
     await driver.manage().window().setRect({ width: 784, height: 824 });
     await driver.findElement(By.id("searchInput")).click();
     await driver.findElement(By.id("searchInput")).sendKeys("book 10");
