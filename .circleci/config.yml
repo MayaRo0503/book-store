@@ -9,14 +9,8 @@ executors:
 
 jobs:
   test:
-    executor: node-executor
     steps:
       - checkout
-      - run:
-          name: Install Node.js
-          command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
       - run:
           name: Install Yarn
           command: |
@@ -31,14 +25,8 @@ jobs:
           command: yarn test-grid
 
   build:
-    executor: node-executor
     steps:
       - checkout
-      - run:
-          name: Install Node.js
-          command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
       - run:
           name: Install Yarn
           command: |
@@ -48,14 +36,8 @@ jobs:
       - run: yarn build
 
   deploy_dev:
-    executor: node-executor
     steps:
       - checkout
-      - run:
-          name: Install Node.js
-          command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
       - run:
           name: Install Yarn
           command: |
@@ -67,14 +49,8 @@ jobs:
           command: yarn deploy:dev
 
   deploy_stage:
-    executor: node-executor
     steps:
       - checkout
-      - run:
-          name: Install Node.js
-          command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
       - run:
           name: Install Yarn
           command: |
