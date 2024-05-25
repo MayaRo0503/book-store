@@ -17,6 +17,8 @@ jobs:
           command: |
             curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             sudo apt-get install -y nodejs
+            sudo npm install -g n
+            sudo n 14.21.0
       - run:
           name: Install Yarn
           command: |
@@ -39,6 +41,8 @@ jobs:
           command: |
             curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             sudo apt-get install -y nodejs
+            sudo npm install -g n
+            sudo n 14.21.0
       - run:
           name: Install Yarn
           command: |
@@ -56,6 +60,8 @@ jobs:
           command: |
             curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             sudo apt-get install -y nodejs
+            sudo npm install -g n
+            sudo n 14.21.0
       - run:
           name: Install Yarn
           command: |
@@ -75,6 +81,8 @@ jobs:
           command: |
             curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             sudo apt-get install -y nodejs
+            sudo npm install -g n
+            sudo n 14.21.0
       - run:
           name: Install Yarn
           command: |

@@ -9,6 +9,9 @@
     "test-ide": "mocha tests/ide/test.js --timeout 20000",
     "test-grid": "mocha tests/grid/runGridTests.js --timeout 20000"
   },
+  "engines": {
+    "node": ">=18.15.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
