@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: npm install
+          command: npm install --retry=5
       - run:
           name: Install Chrome
           command: |
