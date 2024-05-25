@@ -42,4 +42,4 @@ const firefoxCapabilities = {
   },
 };
 
-export default { chromeCapabilities, firefoxCapabilities };
+module.exports = { chromeCapabilities, firefoxCapabilities };

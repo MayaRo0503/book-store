@@ -1,5 +1,5 @@
 const { chromeCapabilities, firefoxCapabilities } =
-  require("./capabilities").default;
+  require("./capabilities");
 const {
   runAddBookToCartWithCapabilities,
   runClearCartWithCapabilities,
