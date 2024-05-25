@@ -1,114 +1,22 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-executors:
-  node-executor:
-    machine:
-      image: ubuntu-2004:202101-01
-    environment:
-      NODE_ENV: development
-
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  test:
-    executor: node-executor
-    steps:
-      - checkout
-      - run:
-          name: Install Node.js 18.x
-          command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-            node -v # Verify Node.js version
-      - run:
-          name: Install Yarn
-          command: |
-            curl -o- -L https://yarnpkg.com/install.sh | bash
-            export PATH="$HOME/.yarn/bin:$PATH"
-            yarn -v # Verify Yarn installation
-      - run: yarn install
-      - run:
-          name: Run IDE Tests
-          command: yarn test-ide
-      - run:
-          name: Run Selenium GRID Tests
-          command: yarn test-grid
+  say-hello:
+    docker:
+      - image: cimg/base:current
 
-  build:
-    executor: node-executor
     steps:
+      # Checkout the code as the first step.
       - checkout
       - run:
-          name: Install Node.js 18.x
-          command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-            node -v # Verify Node.js version
-      - run:
-          name: Install Yarn
-          command: |
-            curl -o- -L https://yarnpkg.com/install.sh | bash
-            export PATH="$HOME/.yarn/bin:$PATH"
-            yarn -v # Verify Yarn installation
-      - run: yarn install
-      - run: yarn build
-
-  deploy_dev:
-    executor: node-executor
-    steps:
-      - checkout
-      - run:
-          name: Install Node.js 18.x
-          command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-            node -v # Verify Node.js version
-      - run:
-          name: Install Yarn
-          command: |
-            curl -o- -L https://yarnpkg.com/install.sh | bash
-            export PATH="$HOME/.yarn/bin:$PATH"
-            yarn -v # Verify Yarn installation
-      - run: yarn install
-      - run:
-          name: Deploy to Development
-          command: yarn deploy:dev
-
-  deploy_stage:
-    executor: node-executor
-    steps:
-      - checkout
-      - run:
-          name: Install Node.js 18.x
-          command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-            node -v # Verify Node.js version
-      - run:
-          name: Install Yarn
-          command: |
-            curl -o- -L https://yarnpkg.com/install.sh | bash
-            export PATH="$HOME/.yarn/bin/$PATH"
-            yarn -v # Verify Yarn installation
-      - run: yarn install
-      - run:
-          name: Deploy to Staging
-          command: yarn deploy:stage
+          name: "Say hello"
+          command: "echo Hello, World!"
 
 workflows:
-  version: 2
-  dev_workflow:
+  say-hello-workflow:
     jobs:
-      - test
-      - build
-      - deploy_dev:
-          requires:
-            - test
-            - build
-
-  stage_workflow:
-    jobs:
-      - test
-      - build
-      - deploy_stage:
-          requires:
-            - test
-            - build
+      - say-hello
