@@ -10,7 +10,6 @@
     "test-grid": "npx mocha tests/grid/runGridTests.js --timeout 20000",
     "postinstall": "chmod -R 777 node_modules/"
   },
-  "type": "module",
   "engines": {
     "node": ">=14.15.4"
   },
