@@ -4,6 +4,10 @@ executors:
   node-executor:
     docker:
       - image: circleci/node:14
+        environment:
+          CHROME_BIN: /usr/bin/google-chrome
+          NODE_ENV: test
+          SELENIUM_SERVER_URL: http://localhost:4444/wd/hub
 
 jobs:
   install-dependencies:
