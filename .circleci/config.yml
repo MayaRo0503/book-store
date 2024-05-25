@@ -9,6 +9,7 @@ executors:
 
 jobs:
   test:
+    executor: node-executor
     steps:
       - checkout
       - run:
@@ -25,6 +26,7 @@ jobs:
           command: yarn test-grid
 
   build:
+    executor: node-executor
     steps:
       - checkout
       - run:
@@ -36,6 +38,7 @@ jobs:
       - run: yarn build
 
   deploy_dev:
+    executor: node-executor
     steps:
       - checkout
       - run:
@@ -49,6 +52,7 @@ jobs:
           command: yarn deploy:dev
 
   deploy_stage:
+    executor: node-executor
     steps:
       - checkout
       - run:
