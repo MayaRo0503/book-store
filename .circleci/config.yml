@@ -13,10 +13,17 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Node.js 18.x
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            node -v # Verify Node.js version
+      - run:
           name: Install Yarn
           command: |
             curl -o- -L https://yarnpkg.com/install.sh | bash
             export PATH="$HOME/.yarn/bin:$PATH"
+            yarn -v # Verify Yarn installation
       - run: yarn install
       - run:
           name: Run IDE Tests
@@ -30,10 +37,17 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Node.js 18.x
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            node -v # Verify Node.js version
+      - run:
           name: Install Yarn
           command: |
             curl -o- -L https://yarnpkg.com/install.sh | bash
             export PATH="$HOME/.yarn/bin:$PATH"
+            yarn -v # Verify Yarn installation
       - run: yarn install
       - run: yarn build
 
@@ -42,10 +56,17 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Node.js 18.x
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            node -v # Verify Node.js version
+      - run:
           name: Install Yarn
           command: |
             curl -o- -L https://yarnpkg.com/install.sh | bash
             export PATH="$HOME/.yarn/bin:$PATH"
+            yarn -v # Verify Yarn installation
       - run: yarn install
       - run:
           name: Deploy to Development
@@ -56,10 +77,17 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Node.js 18.x
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            node -v # Verify Node.js version
+      - run:
           name: Install Yarn
           command: |
             curl -o- -L https://yarnpkg.com/install.sh | bash
-            export PATH="$HOME/.yarn/bin:$PATH"
+            export PATH="$HOME/.yarn/bin/$PATH"
+            yarn -v # Verify Yarn installation
       - run: yarn install
       - run:
           name: Deploy to Staging
