@@ -1,17 +1,61 @@
 version: 2.1
+
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:14
+
 jobs:
-  build_and_test: # this can be any name you choose
-    executor: node/default # use the default executor defined within the orb
+  install-dependencies:
+    executor: node-executor
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
       - run:
-          command: yarn test
-          name: Run tests
+          name: Install Dependencies
+          command: npm install
+
+  test-ide-dev:
+    executor: node-executor
+    steps:
+      - checkout
       - run:
-          command: yarn build
-          name: Build app
-      - persist_to_workspace:
-          root: ~/app.js
-          paths: .
+          name: Run IDE Tests in Dev Environment
+          command: npm run test-ide
+
+  test-grid-dev:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Grid Tests in Dev Environment
+          command: npm run test-grid
+
+  test-ide-stage:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Run IDE Tests in Stage Environment
+          command: npm run test-ide
+
+  test-grid-stage:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Grid Tests in Stage Environment
+          command: npm run test-grid
+
+workflows:
+  version: 2
+  dev-workflow:
+    jobs:
+      - install-dependencies
+      - test-ide-dev
+      - test-grid-dev
+
+  stage-workflow:
+    jobs:
+      - install-dependencies
+      - test-ide-stage
+      - test-grid-stage
