@@ -1,13 +1,12 @@
 const { Builder, By, until } = require("selenium-webdriver");
 const assert = require("assert");
 const fs = require("fs");
-const { performance } = require('perf_hooks');
 
 const iterations = 1500; // Number of times to run the script
 
 (async function testBookstore() {
   let driver;
-  const startTime = performance.now();
+  const startTime = Date.now(); // Use Date.now() to get start time
 
   try {
     // Set up the ChromeDriver path
@@ -48,14 +47,14 @@ const iterations = 1500; // Number of times to run the script
 
     for (let i = 0; i < iterations; i++) {
       // Add to cart functionality check
-      const X = performance.now();
+      const X = Date.now(); // Use Date.now() to get current time
       await driver.findElement(By.css("#bookList .book button")).click();
       await driver.sleep(50);
       let cartItem = await driver
         .findElement(By.css("#cartItems li"))
         .getText();
       assert.equal("Book 1 - $10.99Delete", cartItem.trim()); // Adjusted expected value
-      const Y = performance.now();
+      const Y = Date.now(); // Use Date.now() to get current time
 
       console.log("iteration=" + i);
       console.log(`Time Between clicks: ${Y - X} milsec`);
@@ -102,7 +101,7 @@ const iterations = 1500; // Number of times to run the script
   } catch (e) {
     console.log(e);
   } finally {
-    const endTime = performance.now();
+    const endTime = Date.now(); // Use Date.now() to get end time
     console.log(`Time loading page: ${(endTime - startTime) / 1000} sec`);
     if (driver) {
       await driver.quit();
