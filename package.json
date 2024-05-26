@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha '**/*.spec.js'",
-    "test-ide": "mocha tests/ide/test.js --timeout 20000",
+    "test": "mocha tests/ide/test.js --timeout 20000",
+    "test-ide": "mocha '**/*.spec.js'",
     "test-grid": "mocha tests/grid/gridTests.js --timeout 20000",
     "postinstall": "chmod -R 777 node_modules/"
   },
