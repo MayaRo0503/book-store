@@ -21,13 +21,6 @@ const assert = require("assert");
       .getText();
     assert.equal("Book 1", bookTitle.trim());
 
-    // /// Search for a book that doesn't exist
-    // const searchInput = 'Nonexistent Book';
-    // await driver.findElement(By.id('searchInput')).sendKeys(searchInput);
-    // await driver.findElement(By.tagName('button')).click();
-
-    // // Wait for the button element in the book list to become visible
-    // await driver.wait(until.elementIsVisible(driver.findElement(By.css('#bookList .book button'))), 20000);
 
     // Check if error message is displayed
     try {
