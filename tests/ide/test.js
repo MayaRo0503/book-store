@@ -12,7 +12,7 @@ const iterations = 1500; // Number of times to run the script
     // Set up the ChromeDriver path
     const chromeOptions = {
       binary: process.env.CHROME_BIN,
-      args: ["--headless", "--no-sandbox", "--disable-dev-shm-usage"],
+      args: ["--no-sandbox", "--disable-dev-shm-usage"],
     };
 
     driver = await new Builder()
