@@ -50,11 +50,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Create Test Results Directory
-          command: mkdir -p test-results
-      - run:
           name: Run Selenium IDE Tests
-          command: npm run test-ide
+          command: |
+            mkdir -p test-results
+            npm run test-ide -- --reporter mocha-junit-reporter --reporter-options mochaFile=test-results/results.xml
       - store_test_results:
           path: test-results
 
