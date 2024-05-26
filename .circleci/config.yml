@@ -32,51 +32,31 @@ jobs:
           command: |
             wget https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
             java -jar selenium-server-standalone-3.141.59.jar > /dev/null 2>&1 &
+      - run:
+          name: Wait for Selenium Server
+          command: |
+            # wait for the selenium server to be up and running
+            for i in `seq 1 30`; do
+              curl -s http://localhost:4444/wd/hub/status && echo "Selenium Server is up" && break
+              echo "Waiting for Selenium Server..." && sleep 1
+            done
 
-  test-ide-dev:
+  test-selenium:
     executor: node-executor
     steps:
       - checkout
       - run:
-          name: Run IDE Tests in Dev Environment
-          command: npm run test-ide
-
-  test-grid-dev:
-    executor: node-executor
-    steps:
-      - checkout
-      - run:
-          name: Run Grid Tests in Dev Environment
-          command: npm run test-grid
-
-  test-ide-stage:
-    executor: node-executor
-    steps:
-      - checkout
-      - run:
-          name: Run IDE Tests in Stage Environment
-          command: npm run test-ide
-
-  test-grid-stage:
-    executor: node-executor
-    steps:
-      - checkout
-      - run:
-          name: Run Grid Tests in Stage Environment
-          command: npm run test-grid
+          name: Run Selenium Tests
+          command: |
+            echo "Running Selenium tests..."
+            node test.js
+      - store_test_results:
+          path: test-results
 
 workflows:
   version: 2
-  dev-workflow:
+  test-workflow:
     jobs:
       - install-dependencies
       - start-selenium
-      - test-ide-dev
-      - test-grid-dev
-
-  stage-workflow:
-    jobs:
-      - install-dependencies
-      - start-selenium
-      - test-ide-stage
-      - test-grid-stage
+      - test-selenium
