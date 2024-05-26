@@ -27,6 +27,14 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y google-chrome-stable
 
+  build:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Build Project
+          command: npm run build # Assuming you have a build script defined in your package.json
+
   start-selenium:
     executor: node-executor
     steps:
@@ -50,6 +58,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Create Test Results Directory
+          command: mkdir -p test-results
+      - run:
           name: Run Selenium Tests
           command: |
             echo "Running Selenium tests..."
@@ -57,10 +68,20 @@ jobs:
       - store_test_results:
           path: test-results
 
+  deploy:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Deploy Project
+          command: npm run deploy # Assuming you have a deploy script defined in your package.json
+
 workflows:
   version: 2
   test-workflow:
     jobs:
       - install-dependencies
+      - build
       - start-selenium
       - test-selenium
+      - deploy
