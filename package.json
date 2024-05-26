@@ -4,11 +4,11 @@
   "description": "If your collaborators want to work with the Git Flow workflow in the same repository, they should follow these steps:",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "mocha tests/ide/test.js --timeout 20000",
-    "test-ide": "mocha '**/*.spec.js'",
-    "test-grid": "mocha tests/grid/gridTests.js --timeout 20000",
-    "postinstall": "chmod -R 777 node_modules/"
+    "start": "node app.js", // Start the application
+    "test": "npx mocha --timeout 10000", // Run all tests
+    "test-ide": "npx mocha tests/ide/**/*.spec.js tests/ide/test.js --timeout 20000", // Run IDE tests
+    "test-grid": "npx mocha tests/grid/gridTests.js --timeout 20000", // Run grid tests
+    "postinstall": "chmod -R 777 node_modules/" // Adjust permissions after installation
   },
   "engines": {
     "node": ">=14.15.4"
