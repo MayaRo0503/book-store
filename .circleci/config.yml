@@ -49,7 +49,7 @@ jobs:
           name: Run Selenium Tests
           command: |
             echo "Running Selenium tests..."
-            node test.js
+            node tests/ide/test.js
       - store_test_results:
           path: test-results
 
