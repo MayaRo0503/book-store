@@ -37,6 +37,12 @@ jobs:
       - run:
           name: Run IDE Tests in Stage Environment
           command: npm run test-ide
+      - run:
+          name: List Test Files
+          command: ls -R tests/ide
+      - run:
+          name: Run IDE Tests in Dev Environment
+          command: npm run test-ide
 
   test-grid-stage:
     executor: node-executor
