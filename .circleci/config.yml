@@ -59,9 +59,13 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Download Selenium Server
+          command: |
+            wget -q --show-progress --progress=bar:force -O selenium-server-standalone.jar "https://selenium-release.storage.googleapis.com/4.1/selenium-server-4.1.0.jar"
+      - run:
           name: Start Selenium Server
           command: |
-            npm install selenium-webdriver
+            nohup java -jar selenium-server-standalone.jar standalone > selenium.log 2>&1 &
       - run:
           name: Wait for Selenium Server
           command: |
@@ -70,6 +74,7 @@ jobs:
               curl -s http://localhost:4444/wd/hub/status && echo "Selenium Server is up" && break
               echo "Waiting for Selenium Server..." && sleep 1
             done
+            curl -s http://localhost:4444/wd/hub/status || (echo "Selenium Server failed to start" && exit 1)
       - run:
           name: Verify Selenium Server Log
           command: cat selenium.log || echo "Selenium log not found"
