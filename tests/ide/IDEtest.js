@@ -20,6 +20,7 @@ const assert = require("assert");
       .findElement(By.css("#bookList .book h2"))
       .getText();
     assert.equal("Book 1", bookTitle.trim());
+
     // Check if error message is displayed
     try {
       let alert = await driver.switchTo().alert();
@@ -69,9 +70,3 @@ const assert = require("assert");
     await driver.quit();
   }
 })();
-
-describe("IDE Test", function () {
-  it("should return true", function () {
-    assert.strictEqual(true, true);
-  });
-});
