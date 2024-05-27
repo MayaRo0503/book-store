@@ -44,6 +44,7 @@ const {
   await runSearchInvalidBookWithCapabilities(firefoxCapabilities); // Run new invalid search test
 })();
 
+//lir
 const assert = require("assert");
 
 describe("Grid Test", function () {
