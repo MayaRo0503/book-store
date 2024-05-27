@@ -219,4 +219,3 @@ These steps should help you set up and run Selenium Grid tests successfully. Mak
 
 ---
 
-This guide should now include all the necessary commands for installing `axios`, running IDE tests, running Grid tests, and running all tests with the `.spec.js` suffix.
