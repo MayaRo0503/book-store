@@ -1,6 +1,6 @@
 const { Builder, By, Key, until } = require("selenium-webdriver");
 const assert = require("assert");
-const { chromeCapabilities, firefoxCapabilities } = require("../capabilities");
+const { chromeCapabilities, firefoxCapabilities } = require("./capabilities");
 
 async function runClearCartWithCapabilities(capabilities) {
   let driver = await new Builder()

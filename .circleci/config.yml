@@ -3,11 +3,7 @@ version: 2.1
 executors:
   node-executor:
     docker:
-      - image: circleci/node:14-buster
-        environment:
-          CHROME_BIN: /usr/bin/google-chrome
-          NODE_ENV: test
-          SELENIUM_SERVER_URL: http://localhost:4444/wd/hub
+      - image: circleci/node:14
 
 jobs:
   install-dependencies:
@@ -16,110 +12,50 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: npm install --retry=5
-      - run:
-          name: Install Chrome
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y wget gnupg
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-      - run:
-          name: Install ChromeDriver
-          command: |
-            wget -N https://chromedriver.storage.googleapis.com/91.0.4472.19/chromedriver_linux64.zip
-            unzip chromedriver_linux64.zip
-            sudo mv -f chromedriver /usr/local/bin/chromedriver
-            sudo chmod +x /usr/local/bin/chromedriver
-      - run:
-          name: Install Firefox
-          command: |
-            wget -O firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"
-            tar xjf firefox.tar.bz2
-            sudo mv firefox /opt/firefox
-            sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
-      - run:
-          name: Install GeckoDriver
-          command: |
-            wget -N https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz
-            tar -xzf geckodriver-v0.29.1-linux64.tar.gz
-            sudo mv -f geckodriver /usr/local/bin/geckodriver
-            sudo chmod +x /usr/local/bin/geckodriver
-      - run:
-          name: Verify Drivers
-          command: |
-            chromedriver --version
-            geckodriver --version
-            firefox --version
+          command: npm install
 
-  start-selenium:
+  test-ide-dev:
     executor: node-executor
     steps:
       - checkout
       - run:
-          name: Download Selenium Server
-          command: |
-            wget -q --show-progress --progress=bar:force -O selenium-server-standalone.jar "https://selenium-release.storage.googleapis.com/4.1/selenium-server-4.1.0.jar"
-      - run:
-          name: Start Selenium Server
-          command: |
-            nohup java -jar selenium-server-standalone.jar standalone > selenium.log 2>&1 &
-      - run:
-          name: Wait for Selenium Server
-          command: |
-            echo "Waiting for Selenium Server to start..."
-            for i in `seq 1 30`; do
-              curl -s http://localhost:4444/wd/hub/status && echo "Selenium Server is up" && break
-              echo "Waiting for Selenium Server..." && sleep 1
-            done
-            curl -s http://localhost:4444/wd/hub/status || (echo "Selenium Server failed to start" && exit 1)
-      - run:
-          name: Verify Selenium Server Log
-          command: cat selenium.log || echo "Selenium log not found"
+          name: Run IDE Tests in Dev Environment
+          command: npm run test-ide
 
-  test-selenium-ide:
+  test-grid-dev:
     executor: node-executor
     steps:
       - checkout
       - run:
-          name: Create Test Results Directory
-          command: mkdir -p test-results
-      - run:
-          name: Run Selenium IDE Tests
-          command: |
-            npx mocha tests/ide/**/*.spec.js --timeout 20000
-            npx mocha tests/ide/test.js --timeout 20000
-      - store_test_results:
-          path: test-results
+          name: Run Grid Tests in Dev Environment
+          command: npm run test-grid
 
-  test-selenium-grid:
+  test-ide-stage:
     executor: node-executor
     steps:
       - checkout
       - run:
-          name: Create Test Results Directory
-          command: mkdir -p test-results
+          name: Run IDE Tests in Stage Environment
+          command: npm run test-ide
+
+  test-grid-stage:
+    executor: node-executor
+    steps:
+      - checkout
       - run:
-          name: Run Selenium Grid Tests
-          command: |
-            npx mocha tests/grid/**/*.spec.js --timeout 20000
-            node tests/grid/runGridTests.js
-      - store_test_results:
-          path: test-results
+          name: Run Grid Tests in Stage Environment
+          command: npm run test-grid
 
 workflows:
   version: 2
-  test-workflow:
+  dev-workflow:
     jobs:
       - install-dependencies
-      - start-selenium:
-          requires:
-            - install-dependencies
-      - test-selenium-ide:
-          requires:
-            - start-selenium
-      - test-selenium-grid:
-          requires:
-            - start-selenium
+      - test-ide-dev
+      - test-grid-dev
+
+  stage-workflow:
+    jobs:
+      - install-dependencies
+      - test-ide-stage
+      - test-grid-stage
