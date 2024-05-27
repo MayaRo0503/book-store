@@ -61,8 +61,8 @@ jobs:
       - run:
           name: Start Selenium Server
           command: |
-            wget https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
-            java -jar selenium-server-standalone-3.141.59.jar > selenium.log 2>&1 &
+            wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.19.1/selenium-server-4.19.1.jar
+            nohup java -jar selenium-server-4.19.1.jar standalone > selenium.log 2>&1 &
       - run:
           name: Wait for Selenium Server
           command: |
@@ -73,7 +73,7 @@ jobs:
             done
       - run:
           name: Verify Selenium Server Log
-          command: cat selenium.log
+          command: cat selenium.log || echo "Selenium log not found"
 
   test-selenium-ide:
     executor: node-executor
