@@ -6,6 +6,10 @@
 
 If your collaborators want to work with the Git Flow workflow in the same repository, they should follow these steps.
 
+## **Project Website**
+
+Visit the project website: [https://book-store-5l9x.onrender.com](https://book-store-5l9x.onrender.com)
+
 ## **Tools Used in the Project**
 
 The tools we used in the project are:
@@ -27,7 +31,7 @@ Make sure to install the relevant packages so that the project will run on your 
 
 Each collaborator should start by cloning the repository to their local machine using the following command: 
 ```bash 
-git clone <https://github.com/MayaRo0503/book-store.git>
+git clone [(https://github.com/MayaRo0503/book-store.git)](https://github.com/MayaRo0503/book-store.git)
 ```
 
 ### **2. Install Git Flow (if not already installed)**
