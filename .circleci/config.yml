@@ -58,4 +58,4 @@ workflows:
     jobs:
       - install-dependencies
       - test-ide-stage
-      - test-grid-stage
+      - test-grid-stage
