@@ -1,5 +1,3 @@
-Sure, I'll add the required commands for installing `axios`, running the IDE tests, running the Grid tests, and running all tests with a `.spec.js` suffix. Here is the updated guide:
-
 ---
 
 # **Git Flow Workflow Guide**
@@ -8,15 +6,29 @@ Sure, I'll add the required commands for installing `axios`, running the IDE tes
 
 If your collaborators want to work with the Git Flow workflow in the same repository, they should follow these steps.
 
+## **Tools Used in the Project**
+
+The tools we used in the project are:
+- **NODE.JS**
+- **SELENIUM** (GRID, IDE, WEBDRIVER)
+- **MOCHA**
+- **RENDER**
+- **CIRCLECI**
+
+### Types of Tests Performed:
+- **Load tests**: Checking system load (non-functional)
+- **Functional tests**: Adding to basket, removing from basket, book search
+
+Make sure to install the relevant packages so that the project will run on your computer.
+
 ## **Steps to Follow**
 
 ### **1. Clone the Repository**
 
 Each collaborator should start by cloning the repository to their local machine using the following command: 
 ```bash 
-git clone <repository_URL>
+git clone <https://github.com/MayaRo0503/book-store.git>
 ```
-Replace `<repository_URL>` with the URL of the repository on GitHub.
 
 ### **2. Install Git Flow (if not already installed)**
 
