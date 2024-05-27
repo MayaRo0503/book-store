@@ -31,7 +31,7 @@ Make sure to install the relevant packages so that the project will run on your 
 
 Each collaborator should start by cloning the repository to their local machine using the following command: 
 ```bash 
-git clone [(https://github.com/MayaRo0503/book-store.git)](https://github.com/MayaRo0503/book-store.git)
+git clone https://github.com/MayaRo0503/book-store.git
 ```
 
 ### **2. Install Git Flow (if not already installed)**
