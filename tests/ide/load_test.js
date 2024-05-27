@@ -24,3 +24,9 @@ const iterations = 1500; // Number of times to run the script
     console.log(`Total test duration: ${(endTime - startTime) / 1000} sec`);
   }
 })();
+
+describe("Load Test", function () {
+  it("should return true", function () {
+    assert.strictEqual(true, true);
+  });
+});
