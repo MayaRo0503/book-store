@@ -43,3 +43,11 @@ const {
   console.log("try search invalid book..");
   await runSearchInvalidBookWithCapabilities(firefoxCapabilities); // Run new invalid search test
 })();
+
+const assert = require("assert");
+
+describe("Grid Test", function () {
+  it("should return true", function () {
+    assert.strictEqual(true, true);
+  });
+});

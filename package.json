@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "npx mocha --timeout 10000",
-    "test-ide": "npx mocha tests/ide/test.js --timeout 20000",
-    "test-grid": "npx mocha tests/grid/gridTests.js --timeout 20000",
+    "test": "npx mocha --timeout 10000 'tests/**/*.js'",
+    "test-ide": "npx mocha tests/ide/IDEtest.js --timeout 20000",
+    "test-grid": "npx mocha tests/grid/runGridTests.js --timeout 20000",
     "postinstall": "chmod -R 777 node_modules/"
   },
   "engines": {

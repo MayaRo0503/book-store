@@ -78,3 +78,9 @@ const assert = require("assert");
     await driver.quit();
   }
 })();
+
+describe("IDE Test", function () {
+  it("should return true", function () {
+    assert.strictEqual(true, true);
+  });
+});
