@@ -1,7 +1,6 @@
 const { Builder, By, Key, until } = require("selenium-webdriver");
 const assert = require("assert");
 
-// Define capabilities for different browsers
 const capabilities = {
   chrome: {
     browserName: "chrome",
@@ -20,23 +19,33 @@ async function runTestWithGrid(browserName) {
     let vars;
 
     beforeEach(async function () {
-      driver = await new Builder()
-        .forBrowser(browserName)
-        .usingServer("http://localhost:4444/wd/hub")
-        .withCapabilities(capabilities[browserName])
-        .build();
-      vars = {};
+      try {
+        driver = await new Builder()
+          .forBrowser(browserName)
+          .usingServer("http://localhost:4444/wd/hub")
+          .withCapabilities(capabilities[browserName])
+          .build();
+        vars = {};
+      } catch (error) {
+        console.error("Error in beforeEach: ", error);
+        throw error;
+      }
     });
 
     afterEach(async function () {
-      await driver.quit();
+      if (driver) {
+        try {
+          await driver.quit();
+        } catch (error) {
+          console.error("Error in afterEach: ", error);
+        }
+      }
     });
 
     it("Add book to cart", async function () {
       await driver.get("https://book-store-5l9x.onrender.com");
       await driver.manage().window().setRect({ width: 784, height: 824 });
 
-      // Wait for the button to be clickable and then click it
       await driver.wait(
         until.elementIsClickable(
           driver.findElement(By.css(".book:nth-child(1) > button"))
@@ -47,7 +56,6 @@ async function runTestWithGrid(browserName) {
   });
 }
 
-// Running tests across different browsers
 (async function testOnAllBrowsers() {
   console.log("Testing on Chrome...");
   await runTestWithGrid("chrome");
