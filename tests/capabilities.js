@@ -1,6 +1,4 @@
-const { Options } = require("selenium-webdriver/chrome");
 const { Browser } = require("selenium-webdriver");
-const Chrome = require("selenium-webdriver/chrome");
 
 const chromeCapabilities = {
   browserName: Browser.CHROME,
@@ -43,4 +41,4 @@ const firefoxCapabilities = {
   },
 };
 
-module.exports = { chromeCapabilities, firefoxCapabilities, Options };
+module.exports = { chromeCapabilities, firefoxCapabilities };

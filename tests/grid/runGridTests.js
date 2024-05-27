@@ -1,4 +1,4 @@
-const { chromeCapabilities, firefoxCapabilities } = require("./capabilities");
+const { chromeCapabilities, firefoxCapabilities } = require("../capabilities");
 const {
   runAddBookToCartWithCapabilities,
   runClearCartWithCapabilities,

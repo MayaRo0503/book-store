@@ -84,7 +84,9 @@ jobs:
           command: mkdir -p test-results
       - run:
           name: Run Selenium IDE Tests
-          command: npm run test-ide
+          command: |
+            npx mocha tests/ide/**/*.spec.js --timeout 20000
+            npx mocha tests/ide/test.js --timeout 20000
       - store_test_results:
           path: test-results
 
@@ -97,7 +99,9 @@ jobs:
           command: mkdir -p test-results
       - run:
           name: Run Selenium Grid Tests
-          command: npm run test-grid
+          command: |
+            npx mocha tests/grid/**/*.spec.js --timeout 20000
+            node tests/grid/runGridTests.js
       - store_test_results:
           path: test-results
 
