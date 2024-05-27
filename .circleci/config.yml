@@ -61,8 +61,7 @@ jobs:
       - run:
           name: Start Selenium Server
           command: |
-            wget -q --show-progress --progress=bar:force -O selenium-server-standalone.jar "https://selenium-release.storage.googleapis.com/4.1/selenium-server-4.1.0.jar"
-            nohup java -jar selenium-server-standalone.jar standalone > selenium.log 2>&1 &
+            npm install selenium-webdriver
       - run:
           name: Wait for Selenium Server
           command: |
