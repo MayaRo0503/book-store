@@ -34,12 +34,22 @@ jobs:
             sudo mv -f chromedriver /usr/local/bin/chromedriver
             sudo chmod +x /usr/local/bin/chromedriver
       - run:
-          name: Install Firefox Driver
+          name: Install Firefox
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y firefox
+      - run:
+          name: Install GeckoDriver
           command: |
             wget -N https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz
             tar -xzf geckodriver-v0.29.1-linux64.tar.gz
             sudo mv -f geckodriver /usr/local/bin/geckodriver
             sudo chmod +x /usr/local/bin/geckodriver
+      - run:
+          name: Verify Drivers
+          command: |
+            chromedriver --version
+            geckodriver --version
 
   start-selenium:
     executor: node-executor
@@ -49,15 +59,18 @@ jobs:
           name: Start Selenium Server
           command: |
             wget https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
-            java -jar selenium-server-standalone-3.141.59.jar > /dev/null 2>&1 &
+            java -jar selenium-server-standalone-3.141.59.jar > selenium.log 2>&1 &
       - run:
           name: Wait for Selenium Server
           command: |
-            # wait for the selenium server to be up and running
+            echo "Waiting for Selenium Server to start..."
             for i in `seq 1 30`; do
               curl -s http://localhost:4444/wd/hub/status && echo "Selenium Server is up" && break
               echo "Waiting for Selenium Server..." && sleep 1
             done
+      - run:
+          name: Verify Selenium Server Log
+          command: cat selenium.log
 
   test-selenium-ide:
     executor: node-executor
