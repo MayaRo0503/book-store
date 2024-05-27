@@ -1,11 +1,25 @@
 const { Builder, By, until } = require("selenium-webdriver");
 const assert = require("assert");
+const fs = require("fs");
+
+const iterations = 1500; // Number of times to run the script
 
 (async function testBookstore() {
   let driver;
+  const startTime = performance.now();
 
   try {
-    driver = await new Builder().forBrowser("chrome").build();
+    // Set up the ChromeDriver path
+    const chromeOptions = {
+      binary: process.env.CHROME_BIN,
+      args: ["--headless", "--no-sandbox", "--disable-dev-shm-usage"],
+    };
+
+    driver = await new Builder()
+      .forBrowser("chrome")
+      .setChromeOptions(chromeOptions)
+      .build();
+
     await driver.get("https://book-store-5l9x.onrender.com");
 
     // Title check
@@ -21,7 +35,6 @@ const assert = require("assert");
       .getText();
     assert.equal("Book 1", bookTitle.trim());
 
-
     // Check if error message is displayed
     try {
       let alert = await driver.switchTo().alert();
@@ -32,11 +45,20 @@ const assert = require("assert");
       console.log("No alert found. Test passed.");
     }
 
-    // Add to cart functionality check
-    await driver.findElement(By.css("#bookList .book button")).click();
-    await driver.sleep(1000);
-    let cartItem = await driver.findElement(By.css("#cartItems li")).getText();
-    assert.equal("Book 1 - $10.99Delete", cartItem.trim()); // Adjusted expected value
+    for (let i = 0; i < iterations; i++) {
+      // Add to cart functionality check
+      const X = performance.now();
+      await driver.findElement(By.css("#bookList .book button")).click();
+      await driver.sleep(50);
+      let cartItem = await driver
+        .findElement(By.css("#cartItems li"))
+        .getText();
+      assert.equal("Book 1 - $10.99Delete", cartItem.trim()); // Adjusted expected value
+      const Y = performance.now();
+
+      console.log("iteration=" + i);
+      console.log(`Time Between clicks: ${Y - X} milsec`);
+    }
 
     // Check total price in the cart after adding a book
     let cartTotal = await driver.findElement(By.id("cartTotal")).getText();
@@ -65,9 +87,24 @@ const assert = require("assert");
       .findElement(By.id("cartTotal"))
       .getText();
     assert.equal("0.00", cartTotalAfterClear.trim());
+
+    // Import your test files (Selenium IDE test files)
+    const testFiles = fs
+      .readdirSync("./tests")
+      .filter((file) => file.endsWith(".spec.js"));
+
+    // Run your Selenium IDE test files
+    for (const testFile of testFiles) {
+      const testScript = require(`./tests/${testFile}`);
+      testScript(); // Assuming your test files export a function to run the tests
+    }
   } catch (e) {
     console.log(e);
   } finally {
-    await driver.quit();
+    const endTime = performance.now();
+    console.log(`Time loading page: ${(endTime - startTime) / 1000} sec`);
+    if (driver) {
+      await driver.quit();
+    }
   }
 })();
