@@ -125,6 +125,25 @@ To perform Selenium Grid tests, follow these steps:
     ```bash
     node runGridTests.js
     ```
+### Running Load Tests:
+
+1. Navigate to the folder of your project:
+
+    ```bash
+    cd tests
+    ```
+
+2. Navigate to the `ide` subfolder:
+
+    ```bash
+    cd ide
+    ```
+
+3. Execute the command to run the load tests:
+
+    ```bash
+    node load_test.js
+    ```
 
 ### Updating Selenium Grid:
 
