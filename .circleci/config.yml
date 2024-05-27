@@ -61,8 +61,8 @@ jobs:
       - run:
           name: Start Selenium Server
           command: |
-            wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.19.1/selenium-server-4.19.1.jar
-            nohup java -jar selenium-server-4.19.1.jar standalone > selenium.log 2>&1 &
+            wget -q --show-progress --progress=bar:force -O selenium-server-standalone.jar "https://github.com/SeleniumHQ/selenium/releases/latest/download/selenium-server.jar"
+            nohup java -jar selenium-server-standalone.jar standalone > selenium.log 2>&1 &
       - run:
           name: Wait for Selenium Server
           command: |
