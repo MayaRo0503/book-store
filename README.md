@@ -1,3 +1,5 @@
+Sure, I'll add the required commands for installing `axios`, running the IDE tests, running the Grid tests, and running all tests with a `.spec.js` suffix. Here is the updated guide:
+
 ---
 
 # **Git Flow Workflow Guide**
@@ -68,8 +70,6 @@ git push origin --tags
 
 By following these steps, your collaborators can work with the Git Flow workflow in the same repository, ensuring a consistent and organized development process.
 
-
-
 ***
 
 ## Performing Selenium Grid Tests
@@ -125,6 +125,7 @@ To perform Selenium Grid tests, follow these steps:
     ```bash
     node runGridTests.js
     ```
+
 ### Running Load Tests:
 
 1. Navigate to the folder of your project:
@@ -142,8 +143,51 @@ To perform Selenium Grid tests, follow these steps:
 3. Execute the command to run the load tests:
 
     ```bash
+    npm install axios
     node load_test.js
     ```
+
+### Running IDE Tests:
+
+1. Navigate to the folder of your project:
+
+    ```bash
+    cd tests
+    ```
+
+2. Navigate to the `ide` subfolder:
+
+    ```bash
+    cd ide
+    ```
+
+3. Execute the command to run the IDE tests:
+
+    ```bash
+    npm run test-ide
+    ```
+
+### Running All `.spec.js` Tests:
+
+1. Navigate to the folder of your project:
+
+    ```bash
+    cd tests
+    ```
+
+2. Execute the command to run all tests with the `.spec.js` suffix:
+
+    ```bash
+    npm run test
+    ```
+
+### Running Grid Tests with Localhost:
+
+Ensure that the localhost and Selenium Grid are set up as per the above instructions, then run:
+
+```bash
+npm run test-grid
+```
 
 ### Updating Selenium Grid:
 
@@ -155,6 +199,8 @@ If it is necessary to update a version of Selenium Grid, follow these steps:
 
 3. Repeat the steps for setting up Selenium Grid and configuring grid nodes as mentioned above.
 
-These steps should help you set up and run Selenium Grid tests successfully. <br>
-Make sure to replace `C:\Users\ASUS\Downloads` with the actual location of your Selenium Grid files.
+These steps should help you set up and run Selenium Grid tests successfully. Make sure to replace `C:\Users\ASUS\Downloads` with the actual location of your Selenium Grid files.
 
+---
+
+This guide should now include all the necessary commands for installing `axios`, running IDE tests, running Grid tests, and running all tests with the `.spec.js` suffix.
