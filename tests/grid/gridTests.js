@@ -11,7 +11,7 @@ async function runTestWithCapabilities(capabilities) {
 
   try {
     // Navigate to the website
-    await driver.get("http://bookstore11.azurewebsites.net/");
+    await driver.get("https://book-store-5l9x.onrender.com");
 
     // Check the title
     let title = await driver.getTitle();
